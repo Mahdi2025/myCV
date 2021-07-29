@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.4
+-- version 5.1.0
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Mar 30, 2017 at 10:34 AM
--- Server version: 5.7.14
--- PHP Version: 5.6.25
+-- Host: localhost
+-- Generation Time: Jul 29, 2021 at 11:45 AM
+-- Server version: 8.0.25-0ubuntu0.21.04.1
+-- PHP Version: 7.4.16
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -17,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `wtproject2017`
+-- Database: `project2021`
 --
 
 -- --------------------------------------------------------
@@ -27,7 +28,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `education` (
-  `eduid` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `userid` int NOT NULL,
   `fromyear` varchar(20) NOT NULL,
   `toyear` varchar(20) NOT NULL,
   `college` varchar(30) NOT NULL,
@@ -39,9 +41,9 @@ CREATE TABLE `education` (
 -- Dumping data for table `education`
 --
 
-INSERT INTO `education` (`eduid`, `fromyear`, `toyear`, `college`, `course`, `description`) VALUES
-(1, '2002', '2005', 'CONSECTETUR ADIPISICING ELIT', 'WEB DESIGN', 'Web Designing course '),
-(2, '2007', '2009', 'SED DO EIUSMOD', 'GRAPHIC DESIGN', 'Graphic Design course');
+INSERT INTO `education` (`id`, `userid`, `fromyear`, `toyear`, `college`, `course`, `description`) VALUES
+(1, 1, '2005', '2006', 'baccalaureat degree tunisia', 'MCITP', ''),
+(2, 1, '2010', '2011', 'ideeictopleidinggroep', 'MCITP', 'linux administrator');
 
 -- --------------------------------------------------------
 
@@ -50,7 +52,8 @@ INSERT INTO `education` (`eduid`, `fromyear`, `toyear`, `college`, `course`, `de
 --
 
 CREATE TABLE `employment` (
-  `empid` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `userid` int NOT NULL,
   `fromyear` varchar(20) NOT NULL,
   `toyear` varchar(20) NOT NULL,
   `company` varchar(30) NOT NULL,
@@ -62,77 +65,27 @@ CREATE TABLE `employment` (
 -- Dumping data for table `employment`
 --
 
-INSERT INTO `employment` (`empid`, `fromyear`, `toyear`, `company`, `designation`, `description`) VALUES
-(1, '2005', '2007', 'COMMODO CONSEQUAT', 'WEB DESIGNER', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.'),
-(2, '2009', '2012', 'SED DO EIUSMOD', 'SENIOR DESIGNER', 'Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.'),
-(3, '2012', 'present', 'COMMODO CONSEQUAT', 'ART DIRECTOR', 'Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.');
+INSERT INTO `employment` (`id`, `userid`, `fromyear`, `toyear`, `company`, `designation`, `description`) VALUES
+(1, 1, '2005', '2007', 'COMMODO CONSEQUAT', 'WEB developper', 'Door de studie IT heb ik geleerd\r\ncomplexe problemen pragmatisch en\r\nsystematisch op te lossen. Ik ben in staat\r\nom in verschillende situaties\r\ndaadkrachtig te blijven. Mijn omgeving\r\nvindt mij ondernemend, doordat ik thuis\r\nwerk aan verschillende opdrachten met\r\nvirtuele machines (Oracle en Vmware).\r\nOok ben ik punctueel');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pages`
+-- Table structure for table `hobbies`
 --
 
-CREATE TABLE `pages` (
-  `pid` int(11) NOT NULL,
-  `page` varchar(20) NOT NULL,
-  `data` text NOT NULL
+CREATE TABLE `hobbies` (
+  `id` int NOT NULL,
+  `userid` int NOT NULL,
+  `hobbies` varchar(50) NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `pages`
+-- Dumping data for table `hobbies`
 --
 
-INSERT INTO `pages` (`pid`, `page`, `data`) VALUES
-(1, 'home', '<p>Stylish, flat, easy customizable and awesome looking wordpress theme with original icons!</p>');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `personal`
---
-
-CREATE TABLE `personal` (
-  `uid` int(11) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `fname` varchar(30) NOT NULL,
-  `lname` varchar(30) NOT NULL,
-  `designation` varchar(30) NOT NULL,
-  `phone` varchar(30) NOT NULL,
-  `email` varchar(20) NOT NULL,
-  `website` varchar(50) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `personal`
---
-
-INSERT INTO `personal` (`uid`, `image`, `fname`, `lname`, `designation`, `phone`, `email`, `website`) VALUES
-(1, 'images/user_photo.jpg', 'John', 'Johnson', 'Graphic & Web Designer', '+91 9898989898', 'J.johnson@gmail.com', 'http://www.jjohnson.com');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `projects`
---
-
-CREATE TABLE `projects` (
-  `pid` int(11) NOT NULL,
-  `photo` varchar(255) NOT NULL,
-  `title` varchar(30) NOT NULL,
-  `subtitle` varchar(30) NOT NULL,
-  `filter` varchar(20) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `projects`
---
-
-INSERT INTO `projects` (`pid`, `photo`, `title`, `subtitle`, `filter`) VALUES
-(1, 'images/portfolio1.jpg', 'Vestibulum varius ligula', 'Vivamus suscipit sem', 'web'),
-(2, 'images/portfolio4.jpg', 'Vestibulum varius ligula', 'Vivamus suscipit sem', 'graphic'),
-(3, 'images/portfolio6.jpg', 'Vestibulum varius ligula', 'Vivamus suscipit sem', 'photo'),
-(4, 'images/portfolio10.jpg', 'Vestibulum varius ligula', 'Vivamus suscipit sem', 'photo');
+INSERT INTO `hobbies` (`id`, `userid`, `hobbies`) VALUES
+(1, 0, 'fotographeren');
 
 -- --------------------------------------------------------
 
@@ -141,48 +94,47 @@ INSERT INTO `projects` (`pid`, `photo`, `title`, `subtitle`, `filter`) VALUES
 --
 
 CREATE TABLE `skills` (
-  `skillid` int(11) NOT NULL,
+  `id` int NOT NULL,
+  `userid` int NOT NULL,
   `skilltype` varchar(20) NOT NULL,
   `skill` varchar(50) NOT NULL,
-  `skillvalue` int(11) NOT NULL
+  `skillvalue` int NOT NULL
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `skills`
 --
 
-INSERT INTO `skills` (`skillid`, `skilltype`, `skill`, `skillvalue`) VALUES
-(1, 'progskill', 'Wordpress', 90),
-(2, 'progskill', 'PHP', 80),
-(3, 'progskill', 'HTML', 99),
-(4, 'progskill', 'CSS', 90),
-(5, 'progskill', 'MySQL', 70),
-(6, 'progskill', 'JavaScript', 99),
-(7, 'graphskill', 'AdobePhotoshop', 99),
-(8, 'graphskill', 'AdobeIllustrator', 80),
-(9, 'graphskill', 'AdobeIndesign', 70),
-(10, 'graphskill', 'CorelDraw', 60),
-(11, 'graphskill', '3DMax', 50);
-
+INSERT INTO `skills` (`id`, `userid`, `skilltype`, `skill`, `skillvalue`) VALUES
+(1, 0, 'progskill', 'node.js', 60),
+(2, 0, 'progskill', 'PHP', 60),
+(3, 0, 'progskill', 'HTML', 70),
+(4, 0, 'progskill', 'CSS', 70),
+(5, 0, 'progskill', 'MySQL', 70),
+(6, 0, 'progskill', 'JavaScript', 65),
+(7, 0, 'graphskill', 'MongoDB', 70);
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user`
+-- Table structure for table `users`
 --
 
-CREATE TABLE `user` (
-  `uid` int(11) NOT NULL,
-  `uname` varchar(50) NOT NULL,
-  `upass` varchar(255) NOT NULL
-) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+CREATE TABLE `users` (
+  `id` int NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `age` int NOT NULL,
+  `position` varchar(255) NOT NULL,
+  `image` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
--- Dumping data for table `user`
+-- Dumping data for table `users`
 --
 
-INSERT INTO `user` (`uid`, `uname`, `upass`) VALUES
-(1, 'admin@gmail.com', '$2y$10$JEMq0AXzJh4rEYMO7TpuouTAKWwTtxoBC8CJxmotlJkF6krHtoGve');
+INSERT INTO `users` (`id`, `name`, `email`, `age`, `position`, `image`) VALUES
+(1, 'MAHDI BEN AMEUR', 'mahdi.benameur1@gmail.com', 39, 'webdevelopper', 'images/user_photo.jpg');
 
 --
 -- Indexes for dumped tables
@@ -192,49 +144,35 @@ INSERT INTO `user` (`uid`, `uname`, `upass`) VALUES
 -- Indexes for table `education`
 --
 ALTER TABLE `education`
-  ADD PRIMARY KEY (`eduid`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`);
 
 --
 -- Indexes for table `employment`
 --
 ALTER TABLE `employment`
-  ADD PRIMARY KEY (`empid`);
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`);
 
 --
--- Indexes for table `pages`
+-- Indexes for table `hobbies`
 --
-ALTER TABLE `pages`
-  ADD PRIMARY KEY (`pid`);
-
---
--- Indexes for table `personal`
---
-ALTER TABLE `personal`
-  ADD PRIMARY KEY (`uid`);
-
---
--- Indexes for table `projects`
---
-ALTER TABLE `projects`
-  ADD PRIMARY KEY (`pid`);
+ALTER TABLE `hobbies`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `userid` (`userid`);
 
 --
 -- Indexes for table `skills`
 --
 ALTER TABLE `skills`
-  ADD PRIMARY KEY (`skillid`);
+  ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `social`
+-- Indexes for table `users`
 --
-ALTER TABLE `social`
-  ADD PRIMARY KEY (`uid`);
-
---
--- Indexes for table `user`
---
-ALTER TABLE `user`
-  ADD PRIMARY KEY (`uid`);
+ALTER TABLE `users`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `position` (`position`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -244,32 +182,33 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `education`
 --
 ALTER TABLE `education`
-  MODIFY `eduid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `employment`
 --
 ALTER TABLE `employment`
-  MODIFY `empid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
--- AUTO_INCREMENT for table `pages`
+-- AUTO_INCREMENT for table `hobbies`
 --
-ALTER TABLE `pages`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
---
--- AUTO_INCREMENT for table `projects`
---
-ALTER TABLE `projects`
-  MODIFY `pid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+ALTER TABLE `hobbies`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
 --
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `skillid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+
 --
--- AUTO_INCREMENT for table `user`
+-- AUTO_INCREMENT for table `users`
 --
-ALTER TABLE `user`
-  MODIFY `uid` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+ALTER TABLE `users`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

@@ -63,7 +63,7 @@
 									<th>From</th>
 									<th>To</th>
 									<th>Company</th>
-									<th>Designamtion</th>
+									<th>Designation</th>
 									<th>Description</th>
 									<th width="150px"></th>
 								</tr>

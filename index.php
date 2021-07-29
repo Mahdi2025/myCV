@@ -7,27 +7,31 @@
 		<title>Resume</title>
 		<link rel="stylesheet" href="css/style.css">
 
+			
+
 	</head>
 	<body>
 			<div class="container">
 			<div class="container-inner">
 			<nav id="header">
 				<?php
-					$query="select * from personal where uid=1";
+					$query="select * from users where id=1";
 					$result=mysqli_query($link,$query) or die("Error fetching data.".mysqli_error($link));
-					$personaldetails=mysqli_fetch_assoc($result);
+					$users=mysqli_fetch_assoc($result);
 					mysqli_free_result($result);
 				?>
 				<ul class="nav">
 					<li class="splash">
 						<a href="#information">
 							<div class="profile-image">
-								<img src="<?php echo $personaldetails['image']; ?>" />
+								<img src="<?php echo $users['image']; ?>" />
 							</div>
 							<div class="profile-info">
-								<div class="profile-name"><?php echo strtoupper($personaldetails['fname']); ?><br/><?php echo strtoupper($personaldetails['lname']); ?></div>
-								<div class="profile-designation"><?php echo strtoupper($personaldetails['designation']); ?></div>
-							</div>
+								<div class="profile-name"><?php echo strtoupper($users['name']); ?></div>
+								<div class="profile-age"><?php echo strtoupper($users['age']); ?></div>
+					            <div class="profile-position"><?php echo strtoupper($users['positon']); ?></div>
+								<div class="profile-email"><?php echo strtoupper($users['email']); ?></div>
+						    </div>
 						</a>
 					</li>
 				</ul>
@@ -36,23 +40,23 @@
 			<section id="information">
 				<div class="info">
 					<div class="info-text"><?php echo $homecontent['data']; ?></div>
-					<div class="phone-icon"><span class="icon2">d</span></div>
-					<div class="call"><?php echo $personaldetails['phone']; ?></div>
-					<div class="reach-me"><?php echo $personaldetails['email']; ?><br/><?php echo $personaldetails['website']; ?></div>
+					<div class="phone-icon"><span class="icon2"></span></div>
+					<div class="call"><?php echo $users['phone']; ?></div>
+					<div class="reach-me"><?php echo $users['email']; ?></div>
 				</div>
 				<div class="clear"></div>
 			</section>
 			<section id="profile">
 				<article id="employment">
 					<div class="emploment-header collapse">
-						<div class="icon-emp"><span class="icon">e</span></div>
+						<div class="icon-emp"><span class="icon"></span></div>
 						<h2>Employment</h2>
 						<span class="collapse-control"></span>
 						<div class="clear"></div>
 					</div>
-					<div class="emploment-details">
+					<div class="employment-details">
 						<?php
-							$query="select * from employment";
+							$query="select * from employment where userid=1";
 							$result=mysqli_query($link,$query) or die("Error fetching data.".mysqli_error($link));
 							
 							$oddeven="odd";
@@ -81,7 +85,7 @@
 				</article>
 				<article id="education">
 					<div class="education-header collapse">
-						<div class="icon-edu"><span class="icon">h</span></div>
+						<div class="icon-edu"><span class="icon"></span></div>
 						<h2>Education</h2>
 						<span class="collapse-control"></span>
 						<div class="clear"></div>
@@ -143,7 +147,7 @@
 						<aside class="right-aside">
 							<h4>Database SKILLS</h4>
 							<?php
-								$query="select * from skills where skilltype='graphskill'";
+								$query="select * from skills where skilltype='graphskill' and userid=1";
 								$result=mysqli_query($link,$query) or die("Error fetching data.".mysqli_error($link));
 								$graphskill=1;
 								while($graphskilldetails=mysqli_fetch_assoc($result))
@@ -161,15 +165,16 @@
 				</article>
 				<article id="hobbies">
 					<div class="education-header collapse">
-						<div class="icon-edu"><span class="icon">h</span></div>
-						<h2>Hobbies</h2>
+						<div class="icon-edu"><span class="icon"></span></div>
+						<h2>hobbies</h2>
 						<span class="collapse-control"></span>
 						<div class="clear"></div>
 					</div>
 					<div class="education-details">
 						<?php
-							$query="select * from hobbies";
+							$query="select * from hobbies where userid=1 ";
 							$result=mysqli_query($link,$query) or die("Error fetching data.".mysqli_error($link));
+							
 							
 							$oddeven="odd";
 							while($edudetails=mysqli_fetch_assoc($result))
@@ -177,6 +182,8 @@
 						?>
 						<?php
 								$oddeven==="odd" ? $oddeven="even" : $oddeven="odd";
+								
+								echo $edudetails['hobbies'];
 							}
 							mysqli_free_result($result);
 						?>
